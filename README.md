@@ -1,9 +1,6 @@
-# Java Library Project Template
+# URI Builder
 
-Template for Java library.
+Little library with helper for building URI in Java easier.
 
 ## Features
-- Spotless for Code Style check and apply.
-- .gitignore and .gitattributes for proper ignore and symbols check.
-- .editorconfig for simple configs code style and encoding UTF-8.
-- Proper Gradle and Gradle Wrapper configuration.
+
