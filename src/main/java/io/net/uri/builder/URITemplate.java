@@ -12,14 +12,14 @@ import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 /**
- * Helper for building URI (Micronaut copycat of UriBuilder)
+ * Helper for building URI (simplified Micronaut copycat of UriBuilder)
  *
  * @author Anton Kurako (GoodforGod)
  * @since 21.08.2021
  */
 class URITemplate implements Comparable<URITemplate> {
 
-    private static final String UTF8_ENCODING = String.valueOf(StandardCharsets.UTF_8);
+    private static final String UTF8_ENCODING = StandardCharsets.UTF_8.name();
 
     private static final String STRING_PATTERN_SCHEME = "([^:/?#]+):";
     private static final String STRING_PATTERN_USER_INFO = "([^@\\[/?#]*)";

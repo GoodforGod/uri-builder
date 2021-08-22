@@ -1,19 +1,24 @@
 # URI Builder
 
+![Java CI](https://github.com/GoodforGod/uri-builder/workflows/Java%20CI/badge.svg)
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=GoodforGod_uri-builder&metric=alert_status)](https://sonarcloud.io/dashboard?id=GoodforGod_uri-builder)
+[![Coverage](https://sonarcloud.io/api/project_badges/measure?project=GoodforGod_uri-builder&metric=coverage)](https://sonarcloud.io/dashboard?id=GoodforGod_uri-builder)
+[![Maintainability Rating](https://sonarcloud.io/api/project_badges/measure?project=GoodforGod_uri-builder&metric=sqale_rating)](https://sonarcloud.io/dashboard?id=GoodforGod_uri-builder)
+
 Little library with helper for building URI in Java easier.
 
 Library supposed to move URIBuilder functionality out of Micronaut, so it can be reusable in non Micronaut applications.
 
 ## Dependency :rocket:
 
-**Gradle**
+[**Gradle**](https://mvnrepository.com/artifact/com.github.goodforgod/uri-builder)
 ```groovy
 dependencies {
     compile 'com.github.goodforgod:uri-builder:1.0.0'
 }
 ```
 
-**Maven**
+[**Maven**](https://mvnrepository.com/artifact/com.github.goodforgod/uri-builder)
 ```xml
 <dependency>
     <groupId>com.github.goodforgod</groupId>

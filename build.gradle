@@ -28,6 +28,14 @@ spotless {
     }
 }
 
+sonarqube {
+    properties {
+        property "sonar.host.url", "https://sonarcloud.io"
+        property "sonar.organization", "goodforgod"
+        property "sonar.projectKey", "GoodforGod_uri-builder"
+    }
+}
+
 dependencies {
     implementation "org.jetbrains:annotations:20.1.0"
 
