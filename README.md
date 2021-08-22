@@ -5,9 +5,9 @@
 [![Coverage](https://sonarcloud.io/api/project_badges/measure?project=GoodforGod_uri-builder&metric=coverage)](https://sonarcloud.io/dashboard?id=GoodforGod_uri-builder)
 [![Maintainability Rating](https://sonarcloud.io/api/project_badges/measure?project=GoodforGod_uri-builder&metric=sqale_rating)](https://sonarcloud.io/dashboard?id=GoodforGod_uri-builder)
 
-Little library with helper for building URI in Java easier.
+Small library that helps build URI easier in Java, encoding path, query parameters, etc.
 
-Library supposed to move URIBuilder functionality out of Micronaut, so it can be reusable in non Micronaut applications.
+Have no dependencies.
 
 ## Dependency :rocket:
 

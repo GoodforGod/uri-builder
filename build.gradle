@@ -73,9 +73,9 @@ publishing {
             from components.java
 
             pom {
-                name = "Name"
+                name = "URI Builder"
                 url = "https://github.com/GoodforGod/$artifactId"
-                description = "Description."
+                description = "Small library that helps build URI easier in Java, encoding path, query parameters, etc."
 
                 license {
                     name = "Apache License 2.0"
