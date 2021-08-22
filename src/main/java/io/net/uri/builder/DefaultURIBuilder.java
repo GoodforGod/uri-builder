@@ -10,17 +10,20 @@ import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.util.*;
 import java.util.regex.Matcher;
+import java.util.stream.Collectors;
 
 import static io.net.uri.builder.URITemplate.PATTERN_FULL_PATH;
 import static io.net.uri.builder.URITemplate.PATTERN_FULL_URI;
 
 /**
- * Helper for building URI (Micronaut copycat of UriBuilder)
+ * Helper for building URI (simplified Micronaut copycat of UriBuilder)
  *
  * @author Anton Kurako (GoodforGod)
  * @since 21.08.2021
  */
 class DefaultURIBuilder implements URIBuilder {
+
+    private static final String UTF8_ENCODING = StandardCharsets.UTF_8.name();
 
     private String authority;
     private final Map<String, List<String>> queryParams;
@@ -203,14 +206,12 @@ class DefaultURIBuilder implements URIBuilder {
     @Override
     public DefaultURIBuilder queryParam(String name, String... values) {
         if (isNotEmpty(name) && values != null && values.length > 0) {
-            final List<String> existing = queryParams.getOrDefault(name, Collections.emptyList());
-            final List<String> strings = existing != null ? new ArrayList<>(existing) : new ArrayList<>(values.length);
-            for (Object value : values) {
-                if (value != null) {
-                    strings.add(value.toString());
+            final List<String> params = queryParams.computeIfAbsent(name, k -> new ArrayList<>(values.length));
+            for (String value : values) {
+                if (isNotEmpty(value)) {
+                    params.add(value);
                 }
             }
-            queryParams.put(name, strings);
         }
         return this;
     }
@@ -219,13 +220,11 @@ class DefaultURIBuilder implements URIBuilder {
     @Override
     public DefaultURIBuilder replaceQueryParam(String name, String... values) {
         if (isNotEmpty(name) && values != null && values.length > 0) {
-            List<String> strings = new ArrayList<>(values.length);
-            for (Object value : values) {
-                if (value != null) {
-                    strings.add(value.toString());
-                }
-            }
-            queryParams.put(name, strings);
+            final List<String> newParams = Arrays.stream(values)
+                    .filter(DefaultURIBuilder::isNotEmpty)
+                    .collect(Collectors.toList());
+
+            queryParams.put(name, newParams);
         }
         return this;
     }
@@ -316,7 +315,7 @@ class DefaultURIBuilder implements URIBuilder {
 
     private String buildQueryParams() {
         if (!queryParams.isEmpty()) {
-            StringBuilder builder = new StringBuilder();
+            final StringBuilder builder = new StringBuilder();
             final Iterator<Map.Entry<String, List<String>>> nameIterator = queryParams.entrySet().iterator();
             while (nameIterator.hasNext()) {
                 Map.Entry<String, List<String>> entry = nameIterator.next();
@@ -335,8 +334,8 @@ class DefaultURIBuilder implements URIBuilder {
                 if (nameIterator.hasNext()) {
                     builder.append('&');
                 }
-
             }
+
             return builder.toString();
         }
 
@@ -349,7 +348,7 @@ class DefaultURIBuilder implements URIBuilder {
 
     private String encode(String userInfo) {
         try {
-            return URLEncoder.encode(userInfo, StandardCharsets.UTF_8.name());
+            return URLEncoder.encode(userInfo, UTF8_ENCODING);
         } catch (UnsupportedEncodingException e) {
             throw new IllegalStateException("No available charset: " + e.getMessage());
         }

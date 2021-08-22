@@ -5,7 +5,9 @@ import org.jetbrains.annotations.Nullable;
 
 import java.net.URI;
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.Objects;
+import java.util.stream.Stream;
 
 /**
  * Helper for building URI (Micronaut copycat of UriBuilder)
@@ -102,6 +104,9 @@ public interface URIBuilder {
     @NotNull
     default URIBuilder queryParam(String name, @NotNull Object... values) {
         final String[] valuesAsStrings = Arrays.stream(values)
+                .flatMap(v -> (v instanceof Collection)
+                        ? ((Collection<?>) v).stream()
+                        : Stream.of(v))
                 .map(String::valueOf)
                 .toArray(String[]::new);
 
@@ -131,6 +136,9 @@ public interface URIBuilder {
     @NotNull
     default URIBuilder replaceQueryParam(String name, @NotNull Object... values) {
         final String[] valuesAsStrings = Arrays.stream(values)
+                .flatMap(v -> (v instanceof Collection)
+                        ? ((Collection<?>) v).stream()
+                        : Stream.of(v))
                 .map(String::valueOf)
                 .toArray(String[]::new);
 

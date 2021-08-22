@@ -55,27 +55,27 @@ class UriBuilderTests extends Specification {
         then:
         builder.toString() == 'https://myhost:9090/foo/bar/baz?offset=10'
     }
+
     @Unroll
     void "test queryParam method for uri #uri"() {
         given:
         def builder = URIBuilder.of(uri)
         for (p in params) {
-            if (p.value instanceof List) {
-                builder.queryParam(p.key, *p.value)
-            } else {
-                builder.queryParam(p.key, p.value)
-            }
+            builder.queryParam(p.key, p.value)
         }
+
         expect:
         builder.toString() == expected
         where:
         uri                  | params                  | expected
-        '/foo?existing=true' | ['foo': 'bar']          | '/foo?existing=true&foo=bar'
         '/foo'               | ['foo': 'bar']          | '/foo?foo=bar'
+        '/foo?existing=true' | ['foo': 'bar']          | '/foo?existing=true&foo=bar'
+        '/foo?foo=bar'       | ['foo': 'baz']          | '/foo?foo=bar&foo=baz'
         '/foo'               | ['foo': 'hello world']  | '/foo?foo=hello+world'
         '/foo'               | ['foo': ['bar', 'baz']] | '/foo?foo=bar&foo=baz'
         '/foo'               | ['foo': ['bar', 'baz']] | '/foo?foo=bar&foo=baz'
     }
+
     @Issue("https://github.com/micronaut-projects/micronaut-core/issues/2823")
     void "test parameter names with special characters"() {
         given:
