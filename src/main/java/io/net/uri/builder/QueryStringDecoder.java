@@ -150,7 +150,8 @@ class QueryStringDecoder {
         if (s.charAt(from) == '?') {
             from++;
         }
-        Map<String, List<String>> params = new LinkedHashMap<>();
+
+        final Map<String, List<String>> params = new LinkedHashMap<>();
         int nameStart = from;
         int valueStart = -1;
         int i;
@@ -234,16 +235,14 @@ class QueryStringDecoder {
         if (nameStart >= valueEnd) {
             return false;
         }
+
         if (valueStart <= nameStart) {
             valueStart = valueEnd + 1;
         }
-        String name = decodeComponent(s, nameStart, valueStart - 1, charset, false);
-        String value = decodeComponent(s, valueStart, valueEnd, charset, false);
-        List<String> values = params.get(name);
-        if (values == null) {
-            values = new ArrayList<>(1); // Often there's only 1 value.
-            params.put(name, values);
-        }
+
+        final String name = decodeComponent(s, nameStart, valueStart - 1, charset, false);
+        final String value = decodeComponent(s, valueStart, valueEnd, charset, false);
+        final List<String> values = params.computeIfAbsent(name, k -> new ArrayList<>(1));
         values.add(value);
         return true;
     }
@@ -253,6 +252,7 @@ class QueryStringDecoder {
         if (len <= 0) {
             return EMPTY_STRING;
         }
+
         int firstEscaped = -1;
         for (int i = from; i < toExcluded; i++) {
             char c = s.charAt(i);
@@ -261,6 +261,7 @@ class QueryStringDecoder {
                 break;
             }
         }
+
         if (firstEscaped == -1) {
             return s.substring(from, toExcluded);
         }
@@ -299,6 +300,7 @@ class QueryStringDecoder {
                 if (!result.isUnderflow()) {
                     result.throwException();
                 }
+
                 result = decoder.flush(charBuf);
                 if (!result.isUnderflow()) {
                     result.throwException();
