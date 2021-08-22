@@ -2,6 +2,7 @@ package io.net.uri.builder;
 
 import org.jetbrains.annotations.NotNull;
 
+import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.util.*;
@@ -17,6 +18,8 @@ import java.util.stream.Collectors;
  * @since 21.08.2021
  */
 class URITemplate implements Comparable<URITemplate> {
+
+    private static final String UTF8_ENCODING = String.valueOf(StandardCharsets.UTF_8);
 
     private static final String STRING_PATTERN_SCHEME = "([^:/?#]+):";
     private static final String STRING_PATTERN_USER_INFO = "([^@\\[/?#]*)";
@@ -959,11 +962,13 @@ class URITemplate implements Comparable<URITemplate> {
             }
 
             private String encode(String str, boolean query) {
-                String encoded = URLEncoder.encode(str, StandardCharsets.UTF_8);
-                if (query) {
-                    return encoded;
-                } else {
-                    return encoded.replace("+", "%20");
+                try {
+                    final String encoded = URLEncoder.encode(str, UTF8_ENCODING);
+                    return (query)
+                            ? encoded
+                            : encoded.replace("+", "%20");
+                } catch (UnsupportedEncodingException e) {
+                    throw new IllegalArgumentException(e);
                 }
             }
         }
