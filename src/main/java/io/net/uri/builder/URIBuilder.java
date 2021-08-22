@@ -1,4 +1,4 @@
-package io.uri.builder;
+package io.net.uri.builder;
 
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;

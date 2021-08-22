@@ -1,4 +1,4 @@
-package io.uri.builder;
+package io.net.uri.builder;
 
 import java.net.URI;
 import java.nio.ByteBuffer;

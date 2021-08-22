@@ -1,4 +1,4 @@
-package io.uri.builder;
+package io.net.uri.builder;
 
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -11,8 +11,8 @@ import java.nio.charset.StandardCharsets;
 import java.util.*;
 import java.util.regex.Matcher;
 
-import static io.uri.builder.URITemplate.PATTERN_FULL_PATH;
-import static io.uri.builder.URITemplate.PATTERN_FULL_URI;
+import static io.net.uri.builder.URITemplate.PATTERN_FULL_PATH;
+import static io.net.uri.builder.URITemplate.PATTERN_FULL_URI;
 
 /**
  * Helper for building URI (Micronaut copycat of UriBuilder)

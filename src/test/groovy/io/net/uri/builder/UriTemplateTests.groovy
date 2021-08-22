@@ -1,4 +1,4 @@
-package io.uri.builder
+package io.net.uri.builder
 
 import spock.lang.Specification
 import spock.lang.Unroll
