@@ -1,4 +1,4 @@
-package io.net.uri.builder;
+package io.goodforgod.net.uri;
 
 import java.net.URI;
 import java.nio.ByteBuffer;
@@ -7,7 +7,7 @@ import java.nio.charset.*;
 import java.util.*;
 
 /**
- * Helper for building URI (simplified Micronaut copycat of UriBuilder)
+ * Helper for building URI (Inspired by Micronaut UriBuilder)
  *
  * @author Anton Kurako (GoodforGod)
  * @since 21.08.2021

@@ -1,4 +1,4 @@
-package io.net.uri.builder;
+package io.goodforgod.net.uri;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -12,7 +12,7 @@ import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 /**
- * Helper for building URI (simplified Micronaut copycat of UriBuilder)
+ * Helper for building URI (Inspired by Micronaut UriBuilder)
  *
  * @author Anton Kurako (GoodforGod)
  * @since 21.08.2021
