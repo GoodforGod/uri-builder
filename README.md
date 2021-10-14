@@ -1,5 +1,6 @@
 # URI Builder
 
+![GraalVM Enabled](https://img.shields.io/badge/GraalVM-Ready-orange?style=plastic)
 ![Java CI](https://github.com/GoodforGod/uri-builder/workflows/Java%20CI/badge.svg)
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=GoodforGod_uri-builder&metric=alert_status)](https://sonarcloud.io/dashboard?id=GoodforGod_uri-builder)
 [![Coverage](https://sonarcloud.io/api/project_badges/measure?project=GoodforGod_uri-builder&metric=coverage)](https://sonarcloud.io/dashboard?id=GoodforGod_uri-builder)
