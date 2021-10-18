@@ -1,7 +1,5 @@
 package io.goodforgod.net.uri;
 
-import org.jetbrains.annotations.NotNull;
-
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
@@ -10,10 +8,12 @@ import java.util.function.Predicate;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
+import org.jetbrains.annotations.NotNull;
 
 /**
  * Helper for building URI (Inspired by Micronaut UriBuilder)
  *
+ * @author graemerocher
  * @author Anton Kurako (GoodforGod)
  * @since 21.08.2021
  */

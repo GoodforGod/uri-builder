@@ -9,6 +9,7 @@ import java.util.*;
 /**
  * Helper for building URI (Inspired by Micronaut UriBuilder)
  *
+ * @author graemerocher
  * @author Anton Kurako (GoodforGod)
  * @since 21.08.2021
  */

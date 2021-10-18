@@ -1,17 +1,17 @@
 package io.goodforgod.net.uri;
 
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
-
 import java.net.URI;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Objects;
 import java.util.stream.Stream;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 /**
  * Helper for building URI (Inspired by Micronaut UriBuilder)
  *
+ * @author graemerocher
  * @author Anton Kurako (GoodforGod)
  * @since 21.08.2021
  */
