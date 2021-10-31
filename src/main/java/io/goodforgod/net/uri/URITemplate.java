@@ -1,6 +1,4 @@
-package io.net.uri.builder;
-
-import org.jetbrains.annotations.NotNull;
+package io.goodforgod.net.uri;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
@@ -10,10 +8,12 @@ import java.util.function.Predicate;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
+import org.jetbrains.annotations.NotNull;
 
 /**
- * Helper for building URI (simplified Micronaut copycat of UriBuilder)
+ * Helper for building URI (Inspired by Micronaut UriBuilder)
  *
+ * @author graemerocher
  * @author Anton Kurako (GoodforGod)
  * @since 21.08.2021
  */
@@ -164,10 +164,10 @@ class URITemplate implements Comparable<URITemplate> {
             return 0;
         }
 
-        Integer thisVariableCount = 0;
-        Integer thatVariableCount = 0;
-        Integer thisRawLength = 0;
-        Integer thatRawLength = 0;
+        int thisVariableCount = 0;
+        int thatVariableCount = 0;
+        int thisRawLength = 0;
+        int thatRawLength = 0;
 
         for (PathSegment segment : this.segments) {
             if (segment.isVariable()) {
@@ -190,9 +190,9 @@ class URITemplate implements Comparable<URITemplate> {
         }
 
         // using that.compareTo because more raw length should have higher precedence
-        int rawCompare = thatRawLength.compareTo(thisRawLength);
+        int rawCompare = Integer.compare(thatRawLength, thisRawLength);
         if (rawCompare == 0) {
-            return thisVariableCount.compareTo(thatVariableCount);
+            return Integer.compare(thisVariableCount, thatVariableCount);
         } else {
             return rawCompare;
         }
@@ -201,8 +201,8 @@ class URITemplate implements Comparable<URITemplate> {
     /**
      * Nests another URI template with this template.
      *
-     * @param uriTemplate The URI template. If it does not begin with forward slash
-     *                    it will automatically be appended with forward slash
+     * @param uriTemplate The URI template. If it does not begin with forward slash it will
+     *                    automatically be appended with forward slash
      * @return The new URI template
      */
     public URITemplate nest(CharSequence uriTemplate) {
@@ -212,9 +212,8 @@ class URITemplate implements Comparable<URITemplate> {
     /**
      * Nests another URI template with this template.
      *
-     * @param uriTemplate     The URI template. If it does not begin with forward
-     *                        slash it will automatically be appended with forward
-     *                        slash
+     * @param uriTemplate     The URI template. If it does not begin with forward slash it will
+     *                        automatically be appended with forward slash
      * @param parserArguments The parsed arguments
      * @return The new URI template
      */
@@ -241,7 +240,7 @@ class URITemplate implements Comparable<URITemplate> {
                 .filter(e -> e.getValue() != null)
                 .collect(Collectors.toMap(Map.Entry::getKey, e -> String.valueOf(e.getValue())));
 
-        StringBuilder builder = new StringBuilder(templateString.length());
+        final StringBuilder builder = new StringBuilder(templateString.length());
         boolean anyPreviousHasContent = false;
         boolean anyPreviousHasOperator = false;
         boolean queryParameter = false;
@@ -399,8 +398,7 @@ class URITemplate implements Comparable<URITemplate> {
     }
 
     /**
-     * Returns the template as a string filtering the segments with the provided
-     * filter.
+     * Returns the template as a string filtering the segments with the provided filter.
      *
      * @param filter The filter to test segments
      * @return The template as a string
@@ -488,8 +486,7 @@ class URITemplate implements Comparable<URITemplate> {
         }
 
         /**
-         * If this path segment represents a variable returns the underlying variable
-         * name.
+         * If this path segment represents a variable returns the underlying variable name.
          *
          * @return The variable name if present
          */
@@ -547,8 +544,8 @@ class URITemplate implements Comparable<URITemplate> {
          */
         protected void parse(List<PathSegment> segments) {
             char[] chars = templateText.toCharArray();
-            StringBuilder buff = new StringBuilder();
-            StringBuilder modBuff = new StringBuilder();
+            final StringBuilder buff = new StringBuilder();
+            final StringBuilder modBuff = new StringBuilder();
             int varCount = 0;
             for (char c : chars) {
                 switch (state) {
@@ -612,20 +609,28 @@ class URITemplate implements Comparable<URITemplate> {
                                             encode = true;
                                             repeatPrefix = varCount < 1;
                                             prefix = String.valueOf(operator);
-                                            delimiter = modifier == EXPAND_MODIFIER ? prefix : ",";
+                                            delimiter = modifier == EXPAND_MODIFIER
+                                                    ? prefix
+                                                    : ",";
                                             break;
                                         case ';':
                                             encode = true;
                                             repeatPrefix = true;
                                             prefix = operator + val + '=';
-                                            delimiter = modifier == EXPAND_MODIFIER ? prefix : ",";
+                                            delimiter = modifier == EXPAND_MODIFIER
+                                                    ? prefix
+                                                    : ",";
                                             break;
                                         case QUERY_OPERATOR:
                                         case AND_OPERATOR:
                                             encode = true;
                                             repeatPrefix = true;
-                                            prefix = varCount < 1 ? operator + val + '=' : val + "=";
-                                            delimiter = modifier == EXPAND_MODIFIER ? AND_OPERATOR + val + '=' : ",";
+                                            prefix = varCount < 1
+                                                    ? operator + val + '='
+                                                    : val + "=";
+                                            delimiter = (modifier == EXPAND_MODIFIER)
+                                                    ? AND_OPERATOR + val + '='
+                                                    : ",";
                                             break;
                                         default:
                                             repeatPrefix = varCount < 1;
@@ -635,7 +640,8 @@ class URITemplate implements Comparable<URITemplate> {
                                     }
                                     String modifierStr = modBuff.toString();
                                     char modifierChar = modifier;
-                                    String previous = state == STATE_VAR_NEXT || state == STATE_VAR_NEXT_MODIFIER ? this.varDelimiter
+                                    String previous = (state == STATE_VAR_NEXT || state == STATE_VAR_NEXT_MODIFIER)
+                                            ? this.varDelimiter
                                             : null;
                                     addVariableSegment(segments, val, prefix, delimiter, encode, repeatPrefix, modifierStr, modifierChar,
                                             operator, previous, isQuerySegment);
@@ -734,13 +740,11 @@ class URITemplate implements Comparable<URITemplate> {
          * @param prefix            The prefix to use when expanding the variable
          * @param delimiter         The delimiter to use when expanding the variable
          * @param encode            Whether to URL encode the variable
-         * @param repeatPrefix      Whether to repeat the prefix for each expanded
-         *                          variable
+         * @param repeatPrefix      Whether to repeat the prefix for each expanded variable
          * @param modifierStr       The modifier string
          * @param modifierChar      The modifier as char
          * @param operator          The currently active operator
-         * @param previousDelimiter The delimiter to use if a variable appeared before
-         *                          this variable
+         * @param previousDelimiter The delimiter to use if a variable appeared before this variable
          * @param isQuerySegment    Whether is a query segment
          */
         protected void addVariableSegment(List<PathSegment> segments,
@@ -887,7 +891,7 @@ class URITemplate implements Comparable<URITemplate> {
 
             @Override
             public String toString() {
-                StringBuilder builder = new StringBuilder();
+                final StringBuilder builder = new StringBuilder();
                 builder.append(variable);
                 if (modifierChar != OPERATOR_NONE) {
                     builder.append(modifierChar);
@@ -904,20 +908,23 @@ class URITemplate implements Comparable<URITemplate> {
 
             @Override
             public String expand(Map<String, String> parameters, boolean previousHasContent, boolean anyPreviousHasOperator) {
-                String found = parameters.get(variable);
+                final String found = parameters.get(variable);
                 if (found != null) {
                     String prefixToUse = prefix;
-                    if (operator == QUERY_OPERATOR && !anyPreviousHasOperator && prefix != null
+                    if (operator == QUERY_OPERATOR
+                            && !anyPreviousHasOperator
+                            && prefix != null
                             && !prefix.startsWith(String.valueOf(operator))) {
                         prefixToUse = operator + prefix;
                     }
 
-                    boolean isQuery = operator == QUERY_OPERATOR;
-                    String str = found;
-                    str = applyModifier(modifierStr, modifierChar, str, str.length());
-                    String result = encode ? encode(str, isQuery) : escape(str);
-                    int len = result.length();
-                    StringBuilder finalResult = new StringBuilder(previousHasContent && previousDelimiter != null ? previousDelimiter : "");
+                    final boolean isQuery = operator == QUERY_OPERATOR;
+                    final String str = applyModifier(modifierStr, modifierChar, found, found.length());
+                    final String result = encode ? encode(str, isQuery) : escape(str);
+                    final int len = result.length();
+
+                    final String finalDelimiter = previousHasContent && previousDelimiter != null ? previousDelimiter : "";
+                    final StringBuilder finalResult = new StringBuilder(finalDelimiter);
                     if (len == 0) {
                         switch (operator) {
                             case SLASH_OPERATOR:

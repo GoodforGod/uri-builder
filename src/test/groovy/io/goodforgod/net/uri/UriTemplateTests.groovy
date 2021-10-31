@@ -1,4 +1,4 @@
-package io.net.uri.builder
+package io.goodforgod.net.uri
 
 import spock.lang.Specification
 import spock.lang.Unroll

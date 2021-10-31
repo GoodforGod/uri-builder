@@ -1,5 +1,6 @@
 # URI Builder
 
+![GraalVM Enabled](https://img.shields.io/badge/GraalVM-Ready-orange?style=plastic)
 ![Java CI](https://github.com/GoodforGod/uri-builder/workflows/Java%20CI/badge.svg)
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=GoodforGod_uri-builder&metric=alert_status)](https://sonarcloud.io/dashboard?id=GoodforGod_uri-builder)
 [![Coverage](https://sonarcloud.io/api/project_badges/measure?project=GoodforGod_uri-builder&metric=coverage)](https://sonarcloud.io/dashboard?id=GoodforGod_uri-builder)
@@ -11,17 +12,17 @@ Have no dependencies.
 
 ## Dependency :rocket:
 
-[**Gradle**](https://mvnrepository.com/artifact/com.github.goodforgod/uri-builder)
+[**Gradle**](https://mvnrepository.com/artifact/io.goodforgod/uri-builder)
 ```groovy
 dependencies {
-    compile 'com.github.goodforgod:uri-builder:1.0.0'
+    implementation "io.goodforgod:uri-builder:1.0.0"
 }
 ```
 
-[**Maven**](https://mvnrepository.com/artifact/com.github.goodforgod/uri-builder)
+[**Maven**](https://mvnrepository.com/artifact/io.goodforgod/uri-builder)
 ```xml
 <dependency>
-    <groupId>com.github.goodforgod</groupId>
+    <groupId>io.goodforgod</groupId>
     <artifactId>uri-builder</artifactId>
     <version>1.0.0</version>
 </dependency>
