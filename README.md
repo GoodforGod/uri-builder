@@ -6,7 +6,9 @@
 [![Coverage](https://sonarcloud.io/api/project_badges/measure?project=GoodforGod_uri-builder&metric=coverage)](https://sonarcloud.io/dashboard?id=GoodforGod_uri-builder)
 [![Maintainability Rating](https://sonarcloud.io/api/project_badges/measure?project=GoodforGod_uri-builder&metric=sqale_rating)](https://sonarcloud.io/dashboard?id=GoodforGod_uri-builder)
 
-Little library to help build URI in Java easier.
+Small library that helps build URI easier in Java, encoding path, query parameters, etc.
+
+Have no dependencies.
 
 ## Dependency :rocket:
 

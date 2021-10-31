@@ -65,7 +65,7 @@ publishing {
             pom {
                 name = "URI Builder"
                 url = "https://github.com/GoodforGod/$artifactId"
-                description = "Little library to help build URI in Java easier."
+                description = "Small library that helps build URI easier in Java, encoding path, query parameters, etc."
 
                 license {
                     name = "Apache License 2.0"
