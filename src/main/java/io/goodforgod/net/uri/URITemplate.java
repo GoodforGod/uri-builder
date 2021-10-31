@@ -201,8 +201,8 @@ class URITemplate implements Comparable<URITemplate> {
     /**
      * Nests another URI template with this template.
      *
-     * @param uriTemplate The URI template. If it does not begin with forward slash
-     *                    it will automatically be appended with forward slash
+     * @param uriTemplate The URI template. If it does not begin with forward slash it will
+     *                    automatically be appended with forward slash
      * @return The new URI template
      */
     public URITemplate nest(CharSequence uriTemplate) {
@@ -212,9 +212,8 @@ class URITemplate implements Comparable<URITemplate> {
     /**
      * Nests another URI template with this template.
      *
-     * @param uriTemplate     The URI template. If it does not begin with forward
-     *                        slash it will automatically be appended with forward
-     *                        slash
+     * @param uriTemplate     The URI template. If it does not begin with forward slash it will
+     *                        automatically be appended with forward slash
      * @param parserArguments The parsed arguments
      * @return The new URI template
      */
@@ -399,8 +398,7 @@ class URITemplate implements Comparable<URITemplate> {
     }
 
     /**
-     * Returns the template as a string filtering the segments with the provided
-     * filter.
+     * Returns the template as a string filtering the segments with the provided filter.
      *
      * @param filter The filter to test segments
      * @return The template as a string
@@ -488,8 +486,7 @@ class URITemplate implements Comparable<URITemplate> {
         }
 
         /**
-         * If this path segment represents a variable returns the underlying variable
-         * name.
+         * If this path segment represents a variable returns the underlying variable name.
          *
          * @return The variable name if present
          */
@@ -743,13 +740,11 @@ class URITemplate implements Comparable<URITemplate> {
          * @param prefix            The prefix to use when expanding the variable
          * @param delimiter         The delimiter to use when expanding the variable
          * @param encode            Whether to URL encode the variable
-         * @param repeatPrefix      Whether to repeat the prefix for each expanded
-         *                          variable
+         * @param repeatPrefix      Whether to repeat the prefix for each expanded variable
          * @param modifierStr       The modifier string
          * @param modifierChar      The modifier as char
          * @param operator          The currently active operator
-         * @param previousDelimiter The delimiter to use if a variable appeared before
-         *                          this variable
+         * @param previousDelimiter The delimiter to use if a variable appeared before this variable
          * @param isQuerySegment    Whether is a query segment
          */
         protected void addVariableSegment(List<PathSegment> segments,

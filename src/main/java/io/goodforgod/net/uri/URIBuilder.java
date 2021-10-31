@@ -63,8 +63,8 @@ public interface URIBuilder {
     URIBuilder port(int port);
 
     /**
-     * Appends the given path to the existing path correctly handling '/'. If path
-     * is null it is simply ignored.
+     * Appends the given path to the existing path correctly handling '/'. If path is null it is simply
+     * ignored.
      *
      * @param path The path
      * @return This builder
@@ -82,8 +82,8 @@ public interface URIBuilder {
     URIBuilder replacePath(@Nullable String path);
 
     /**
-     * Adds a query parameter for the give name and values. The values will be URI
-     * encoded. If either name or values are null the value will be ignored.
+     * Adds a query parameter for the give name and values. The values will be URI encoded. If either
+     * name or values are null the value will be ignored.
      *
      * @param name   The name
      * @param values The values
@@ -93,12 +93,11 @@ public interface URIBuilder {
     URIBuilder queryParam(String name, @NotNull String... values);
 
     /**
-     * Adds a query parameter for the give name and values. The values will be URI
-     * encoded. If either name or values are null the value will be ignored.
+     * Adds a query parameter for the give name and values. The values will be URI encoded. If either
+     * name or values are null the value will be ignored.
      *
      * @param name   The name
-     * @param values The values with be converted to String via
-     *               {@link String#valueOf(Object)}
+     * @param values The values with be converted to String via {@link String#valueOf(Object)}
      * @return This builder
      */
     @NotNull
@@ -114,8 +113,8 @@ public interface URIBuilder {
     }
 
     /**
-     * Adds a query parameter for the give name and values. The values will be URI
-     * encoded. If either name or values are null the value will be ignored.
+     * Adds a query parameter for the give name and values. The values will be URI encoded. If either
+     * name or values are null the value will be ignored.
      *
      * @param name   The name
      * @param values The values
@@ -125,12 +124,11 @@ public interface URIBuilder {
     URIBuilder replaceQueryParam(String name, @NotNull String... values);
 
     /**
-     * Adds a query parameter for the give name and values. The values will be URI
-     * encoded. If either name or values are null the value will be ignored.
+     * Adds a query parameter for the give name and values. The values will be URI encoded. If either
+     * name or values are null the value will be ignored.
      *
      * @param name   The name
-     * @param values The values with be converted to String via
-     *               {@link String#valueOf(Object)}
+     * @param values The values with be converted to String via {@link String#valueOf(Object)}
      * @return This builder
      */
     @NotNull
