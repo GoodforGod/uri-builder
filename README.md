@@ -1,3 +1,5 @@
+**Please migrate to successor** [http-common](https://github.com/GoodforGod/http-common) library.
+
 # URI Builder
 
 ![GraalVM Enabled](https://img.shields.io/badge/GraalVM-Ready-orange?style=plastic)
